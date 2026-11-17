@@ -13,20 +13,21 @@ class Tensor{
         Tensor(std::vector<float> data);
         Tensor(std::vector<std::vector<float>> data);
 
-        const float &item() const;
         float &item();
+        const float &item() const;
+        std::size_t numel() const;
         
         // General indexing
         float& operator()(const std::vector<std::size_t>& indices);
         const float& operator()(const std::vector<std::size_t>& indices) const;
 
         // 1D indexing
-        const float &operator()(std::size_t i) const;
         float &operator()(std::size_t i);
+        const float &operator()(std::size_t i) const;
 
         // 2D indexing
-        const float &operator()(std::size_t i, std::size_t j) const;
         float &operator()(std::size_t i, std::size_t j);
+        const float &operator()(std::size_t i, std::size_t j) const;
 
         const std::vector<std::size_t>& shape() const;
         const std::vector<std::size_t>& stride() const;

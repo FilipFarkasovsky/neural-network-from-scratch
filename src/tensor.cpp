@@ -51,6 +51,10 @@ float &Tensor::item(){
     }
 }
 
+std::size_t Tensor::numel() const {
+    return _data.size();
+}
+
 const std::vector<std::size_t>& Tensor::shape() const {
     return _shape;
 }
@@ -97,7 +101,7 @@ const float& Tensor::operator()(const std::vector<std::size_t>& indices) const {
     return _data[flat_index];
 }
 
-float &Tensor::operator()(std::size_t i){
+float& Tensor::operator()(std::size_t i) {
     return (*this)(std::vector<std::size_t>{i});
 }
 

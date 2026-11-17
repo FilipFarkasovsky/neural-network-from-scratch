@@ -1,4 +1,3 @@
-
 #include "tensor.h"
 #include <iostream>
 #include <vector>
@@ -28,6 +27,8 @@ int main() {
 
     test("Vector indexing", v(std::vector<std::size_t>{0}) == 1.0f);
 
+    test("Vector numel", v.numel() == 3);
+
     test("1D indexing", v(1) == 2.0f);
 
     v(1) = 5.0f;
@@ -39,6 +40,8 @@ int main() {
     test("Matrix construction", m.shape() == std::vector<std::size_t>{2, 2});
 
     test("Matrix vector indexing", m(std::vector<std::size_t>{1, 0}) == 3.0f);
+
+    test("Matrix numel", m.numel() == 4);
 
     test("2D indexing", m(1, 1) == 4.0f);
 
