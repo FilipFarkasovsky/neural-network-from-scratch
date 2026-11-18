@@ -2,6 +2,25 @@
 #include <iostream>
 #include <vector>
 
+Tensor::Tensor(std::vector<float> data, std::vector<std::size_t> shape)
+    : _data(std::move(data)),
+      _shape(std::move(shape)),
+      _stride(_shape.size())
+{
+    std::size_t stride = 1;
+
+    // Calculate row-major strides
+    for (std::size_t i = _shape.size(); i-- > 0;) {
+        _stride[i] = stride;
+        stride *= _shape[i];
+    }
+
+    // Validate the number of elements
+    if (stride != _data.size()) {
+        throw std::invalid_argument("Data size does not match tensor shape.");
+    }
+}
+
 Tensor::Tensor(float data) : _data{data}, _shape{}, _stride{} {}
 
 Tensor::Tensor(const std::vector<float> data) : _data(data), _shape{data.size()}, _stride{1} {}

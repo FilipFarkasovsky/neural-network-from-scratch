@@ -10,9 +10,14 @@ class Tensor{
         std::vector<std::size_t> _stride;
 
     public:
+        // any-D accepting flat array and shape for high performance
+        Tensor(std::vector<float> data, std::vector<std::size_t> shape);
+        // 1D shape
         Tensor(float data);
-        Tensor(const std::vector<float> data);
-        Tensor(const std::vector<std::vector<float>> data);
+        // 2D shape
+        Tensor(std::vector<float> data);
+        // 3D shape
+        Tensor(std::vector<std::vector<float>> data);
 
         float &item();
         const float &item() const;
