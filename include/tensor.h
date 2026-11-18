@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <ostream>
+#include <memory>
 
 class Tensor{
     private:
@@ -10,8 +11,8 @@ class Tensor{
 
     public:
         Tensor(float data);
-        Tensor(std::vector<float> data);
-        Tensor(std::vector<std::vector<float>> data);
+        Tensor(const std::vector<float> data);
+        Tensor(const std::vector<std::vector<float>> data);
 
         float &item();
         const float &item() const;
@@ -33,4 +34,7 @@ class Tensor{
         const std::vector<std::size_t>& stride() const;
 
         friend std::ostream &operator<<(std::ostream &os, const Tensor &obj);
+
+        std::shared_ptr<Tensor> operator+(const std::shared_ptr<Tensor>& other) const;
+        std::shared_ptr<Tensor> matmul(const std::shared_ptr<Tensor>& other) const;
 };
